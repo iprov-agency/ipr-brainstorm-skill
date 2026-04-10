@@ -29,7 +29,7 @@ You MUST complete these steps in order:
 6. **Write design doc** -- save to the appropriate vault location (see Output Locations below)
 7. **Design self-review** -- quick inline check for placeholders, contradictions, ambiguity, scope
 8. **User reviews written doc** -- ask user to review before proceeding
-9. **Transition** -- hand off to `/spec` for implementation, or leave as a standing architecture doc
+9. **Decide next step** -- ask the user what to do with the brainstorm (see Transition below)
 
 ## The Process
 
@@ -95,11 +95,21 @@ Fix any issues inline. No need to re-review.
 
 ## Transition
 
-After user approves the design:
+After the user approves the design, ask:
 
-- If the design is ready for implementation: invoke `/spec` to write a build specification
-- If the design is an architecture doc or ADR: update `status: approved` in frontmatter. Done.
-- If the design needs more work: note what is missing and schedule follow-up
+> "The brainstorm is complete. What would you like to do next?"
+
+Present the options that make sense for what was discussed. Common next steps:
+
+| If the brainstorm produced... | Suggest... |
+|-------------------------------|------------|
+| An architecture or design doc | "I can save this as a design note in the vault" |
+| An ADR (decision record) | "I can write this up as an ADR" |
+| A spec-ready design | "I can hand this to Shepard to spec and build, or write the spec now with /spec" |
+| Something that needs more research | "What area should we dig into next?" |
+| Something unclear | "What feels like the right next step to you?" |
+
+**Do NOT automatically invoke /spec or /build.** The user decides what happens next. The brainstorm is the thinking. The next step is the doing. They are separate.
 
 ## Key Principles
 
