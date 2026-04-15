@@ -1,0 +1,50 @@
+name: Notify Central Distributor
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate dispatch token
+        env:
+          GH_TOKEN: ${{ secrets.DISTRIBUTOR_DISPATCH_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${GH_TOKEN}" ]; then
+            echo "DISTRIBUTOR_DISPATCH_TOKEN secret is required."
+            exit 1
+          fi
+
+      - name: Send repository dispatch
+        env:
+          GH_TOKEN: ${{ secrets.DISTRIBUTOR_DISPATCH_TOKEN }}
+          SKILL_NAME: ${{ github.event.repository.name }}
+          SKILL_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+
+          python3 - <<'PY' > dispatch.json
+          import json
+          import os
+
+          payload = {
+              "event_type": "skill-updated",
+              "client_payload": {
+                  "skill": os.environ["SKILL_NAME"],
+                  "sha": os.environ["SKILL_SHA"],
+              },
+          }
+          print(json.dumps(payload))
+          PY
+
+          gh api repos/iprov-agency/ipr-dev-pipeline/dispatches \
+            --method POST \
+            --input dispatch.json
