@@ -103,13 +103,14 @@ Present the options that make sense for what was discussed. Common next steps:
 
 | If the brainstorm produced... | Suggest... |
 |-------------------------------|------------|
+| A multi-task project ready to build | "Ready to formalize the design? Run `/lc design` to create the planning documents and prepare for parallel spec writing." |
 | An architecture or design doc | "I can save this as a design note in the vault" |
 | An ADR (decision record) | "I can write this up as an ADR" |
-| A spec-ready design | "I can hand this to Shepard to spec and build, or write the spec now with /spec" |
+| A single-task spec-ready design | "I can hand this to Shepard to spec and build with `/build-with-codex`" |
 | Something that needs more research | "What area should we dig into next?" |
 | Something unclear | "What feels like the right next step to you?" |
 
-**Do NOT automatically invoke /spec or /build.** The user decides what happens next. The brainstorm is the thinking. The next step is the doing. They are separate.
+**Do NOT automatically invoke any next skill.** The user decides what happens next. The brainstorm is the thinking. The next step is the doing. They are separate.
 
 ## Key Principles
 
